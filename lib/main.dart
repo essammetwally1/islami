@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:islami/screens/home_screen.dart';
 
-void main() {
-  runApp(IslamiApp());
+void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // Simulate app setup logic (remove this delay in production)
+  // await Future.delayed(Duration(seconds: 1));
+
+  FlutterNativeSplash.remove();
+  runApp(const IslamiApp());
 }
 
 class IslamiApp extends StatelessWidget {
@@ -11,17 +19,8 @@ class IslamiApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: {HomeScreen.routeName: (context) => HomeScreen()},
+      initialRoute: HomeScreen.routeName,
+      routes: {HomeScreen.routeName: (context) => const HomeScreen()},
     );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  static const String routeName = '/home';
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
   }
 }

@@ -11,6 +11,7 @@ class NavbarActiveIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+      margin: EdgeInsets.only(top: 10), // mgk
       decoration: BoxDecoration(
         color: AppTheme.black.withValues(alpha: .6),
         borderRadius: BorderRadius.circular(66),

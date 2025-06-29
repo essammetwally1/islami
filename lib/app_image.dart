@@ -1,5 +1,5 @@
 class AppImage {
-  static const String onboardingTop = 'assets/onboarding/onboardingtop.png';
+  static const String islamiLogo = 'assets/onboarding/onboardingtop.png';
   static const String onboardingImage1 = 'assets/onboardingh/1.png';
   static const String onboardingImage2 = 'assets/onboardingh/2.png';
   static const String onboardingImage3 = 'assets/onboardingh/3.png';
@@ -11,4 +11,8 @@ class AppImage {
   static const String navbarSebha = 'assets/icons/sebha.svg';
   static const String navbarRadio = 'assets/icons/radio.svg';
   static const String navbarTime = 'assets/icons/time.svg';
+
+  static const String backgroundImage = 'assets/Background.png';
+  static const String frame = 'assets/frame.png';
+  static const String sura = 'assets/sura.png';
 }

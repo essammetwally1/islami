@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:islami/app_image.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/componants/navbar_icon.dart';
-import 'package:islami/componants/navbar_active_icon.dart'; // Make sure you import this
+import 'package:islami/componants/navbar_active_icon.dart';
+import 'package:islami/views/quran_view.dart'; // Make sure you import this
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/homescreen';
@@ -17,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
   final List<Widget> pages = const [
-    Center(child: Text('Quran')),
+    QuranView(),
     Center(child: Text('Hadeth')),
     Center(child: Text('Sebha')),
     Center(child: Text('Radio')),

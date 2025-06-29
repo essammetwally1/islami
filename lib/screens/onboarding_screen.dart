@@ -44,7 +44,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Image.asset(AppImage.onboardingTop, height: 171),
+            Image.asset(AppImage.islamiLogo, height: 171),
             Expanded(
               child: PageView.builder(
                 controller: _pageController,

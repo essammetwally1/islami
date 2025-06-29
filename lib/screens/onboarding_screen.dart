@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:islami/app_image.dart';
+import 'package:islami/app_theme.dart';
 import 'package:islami/models/onboarding_data_model.dart';
 import 'package:islami/screens/home_screen.dart';
 
@@ -38,11 +40,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff202020),
+      backgroundColor: AppTheme.black,
       body: SafeArea(
         child: Column(
           children: [
-            Image.asset('assets/onboardingtop.png', height: 171),
+            Image.asset(AppImage.onboardingTop, height: 171),
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
@@ -61,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xffE2BE7F),
+                            color: AppTheme.primary,
                           ),
                         ),
                         const SizedBox(height: 32),
@@ -71,7 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xffE2BE7F),
+                            color: AppTheme.primary,
                           ),
                         ),
                       ],
@@ -94,7 +96,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: const Text(
                         'Back',
                         style: TextStyle(
-                          color: Color(0xffE2BE7F),
+                          color: AppTheme.primary,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -116,7 +118,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           height: 8,
                           decoration: BoxDecoration(
                             color: currentPage == index
-                                ? Color(0xffE2BE7F)
+                                ? AppTheme.primary
                                 : Colors.grey,
                             borderRadius: BorderRadius.circular(4),
                           ),
@@ -132,7 +134,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ? 'Get Started'
                           : 'Next',
                       style: const TextStyle(
-                        color: Color(0xffE2BE7F),
+                        color: AppTheme.primary,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),

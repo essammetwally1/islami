@@ -6,8 +6,6 @@ import 'package:islami/screens/onboarding_screen.dart';
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  // Simulate app setup logic (remove this delay in production)
-  // await Future.delayed(Duration(seconds: 1));
 
   FlutterNativeSplash.remove();
   runApp(const IslamiApp());

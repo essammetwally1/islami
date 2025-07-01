@@ -4,8 +4,8 @@ import 'package:islami/app_image.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/componants/listview_sura_item.dart';
 
-class QuranView extends StatelessWidget {
-  const QuranView({super.key});
+class QuranTab extends StatelessWidget {
+  const QuranTab({super.key});
 
   @override
   Widget build(BuildContext context) {

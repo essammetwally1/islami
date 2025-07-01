@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami/app_theme.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:islami/screens/home_screen.dart';
 import 'package:islami/screens/onboarding_screen.dart';
@@ -23,6 +24,10 @@ class IslamiApp extends StatelessWidget {
         HomeScreen.routeName: (context) => const HomeScreen(),
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),
       },
+
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.dark,
     );
   }
 }

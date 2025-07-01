@@ -3,7 +3,7 @@ import 'package:islami/app_image.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/componants/navbar_icon.dart';
 import 'package:islami/componants/navbar_active_icon.dart';
-import 'package:islami/views/quran_view.dart'; // Make sure you import this
+import 'package:islami/tabs/quran_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/homescreen';
@@ -17,8 +17,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
-  final List<Widget> pages = const [
-    QuranView(),
+  final List<Widget> tabs = const [
+    QuranTab(),
     Center(child: Text('Hadeth')),
     Center(child: Text('Sebha')),
     Center(child: Text('Radio')),
@@ -28,19 +28,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[currentIndex],
+      body: tabs[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: AppTheme.primary,
+        // backgroundColor: AppTheme.primary,
         currentIndex: currentIndex,
-        onTap: (index) => setState(() {
-          currentIndex = index;
-        }),
-        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          if (currentIndex != index) {
+            currentIndex = index;
+            setState(() {});
+          }
+        },
+        // type: BottomNavigationBarType.fixed,
         selectedFontSize: 12,
-        unselectedFontSize: 0,
-        showUnselectedLabels: true,
-        selectedItemColor: AppTheme.white,
-        unselectedItemColor: Colors.red,
+        // showUnselectedLabels: false,
+        // selectedItemColor: AppTheme.white,
+        // unselectedItemColor: Colors.red,
         items: [
           BottomNavigationBarItem(
             icon: NavbarIcon(image: AppImage.navbarQuran),

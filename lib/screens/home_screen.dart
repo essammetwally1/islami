@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
-  final List<Widget> tabs = const [
+  final List<Widget> tabs = [
     QuranTab(),
     Center(child: Text('Hadeth')),
     Center(child: Text('Sebha')),

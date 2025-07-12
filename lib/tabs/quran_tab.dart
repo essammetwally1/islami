@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami/app_image.dart';
 import 'package:islami/app_theme.dart';
+import 'package:islami/models/sura_model.dart';
+import 'package:islami/services/quran_service.dart';
 
 class QuranTab extends StatelessWidget {
-  const QuranTab({super.key});
+  final List<SuraModel> suraModels = QuranService.suraModels;
+  QuranTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -112,38 +115,45 @@ class QuranTab extends StatelessWidget {
                   ),
                   Expanded(
                     child: ListView.separated(
-                      itemBuilder: (_, index) => Container(
-                        width: double.infinity,
+                      itemBuilder: (_, index) => InkWell(
+                        // onTap: ,
                         child: Row(
                           children: [
-                            Stack(
+                            Container(
+                              height: 70,
+                              width: 70,
                               alignment: Alignment.center,
-                              children: [
-                                Image.asset(
-                                  AppImage.frame,
-                                  fit: BoxFit.contain,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  scale: .78,
+                                  image: AssetImage(AppImage.frame),
+
+                                  // fit: BoxFit.contain,
                                 ),
-                                Text(
-                                  '1',
-                                  style: textTheme.headlineMedium!.copyWith(
-                                    color: AppTheme.white,
-                                  ),
+                              ),
+
+                              child: Text(
+                                suraModels[index].number.toString(),
+
+                                style: textTheme.headlineMedium!.copyWith(
+                                  color: AppTheme.white,
                                 ),
-                              ],
+                              ),
                             ),
+
                             SizedBox(width: 30),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Text(
-                                  'Al-Fatiha',
+                                  suraModels[index].englishName,
                                   style: textTheme.headlineMedium!.copyWith(
                                     color: AppTheme.white,
                                   ),
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  '7 Verses',
+                                  '${suraModels[index].ayaNumber} Verses',
                                   style: textTheme.bodySmall!.copyWith(
                                     color: AppTheme.white,
                                   ),
@@ -152,7 +162,7 @@ class QuranTab extends StatelessWidget {
                             ),
                             Spacer(),
                             Text(
-                              'الفاتحه',
+                              suraModels[index].arabicName,
                               style: textTheme.headlineMedium!.copyWith(
                                 color: AppTheme.white,
                               ),
@@ -160,9 +170,10 @@ class QuranTab extends StatelessWidget {
                           ],
                         ),
                       ),
+
                       separatorBuilder: (_, _) =>
                           Divider(color: AppTheme.white, thickness: 1),
-                      itemCount: 30,
+                      itemCount: suraModels.length,
                     ),
                   ),
                 ],

@@ -9,11 +9,34 @@ class AppTheme {
 
   static ThemeData darkTheme = ThemeData(
     primaryColor: primary,
+    scaffoldBackgroundColor: black,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: primary,
       type: BottomNavigationBarType.fixed,
       showUnselectedLabels: false,
       selectedItemColor: AppTheme.white,
+    ),
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: black,
+      ),
+      headlineMedium: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: black,
+      ),
+      headlineSmall: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+        color: black,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        color: black,
+      ),
     ),
   );
 }

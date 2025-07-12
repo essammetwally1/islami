@@ -5,10 +5,6 @@ import 'package:islami/screens/home_screen.dart';
 import 'package:islami/screens/onboarding_screen.dart';
 
 void main() async {
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
-  // FlutterNativeSplash.remove();
   runApp(const IslamiApp());
 }
 
@@ -19,7 +15,7 @@ class IslamiApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: OnboardingScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),

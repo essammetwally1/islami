@@ -68,6 +68,7 @@ flutter:
     - assets/images@3x/
     - assets/splash/
     - assets/onboarding/
+    - assets/quran/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

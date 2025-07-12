@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:islami/app_image.dart';
-import 'package:islami/app_theme.dart';
 import 'package:islami/componants/navbar_icon.dart';
 import 'package:islami/componants/navbar_active_icon.dart';
 import 'package:islami/tabs/quran_tab.dart';
@@ -38,11 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {});
           }
         },
-        // type: BottomNavigationBarType.fixed,
         selectedFontSize: 12,
-        // showUnselectedLabels: false,
-        // selectedItemColor: AppTheme.white,
-        // unselectedItemColor: Colors.red,
+
         items: [
           BottomNavigationBarItem(
             icon: NavbarIcon(image: AppImage.navbarQuran),

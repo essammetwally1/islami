@@ -39,8 +39,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: AppTheme.black,
       body: SafeArea(
         child: Column(
           children: [
@@ -60,9 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Spacer(),
                         Text(
                           page.title,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                          style: textTheme.headlineLarge!.copyWith(
                             color: AppTheme.primary,
                           ),
                         ),
@@ -70,9 +68,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Text(
                           page.description,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                          style: textTheme.headlineMedium!.copyWith(
                             color: AppTheme.primary,
                           ),
                         ),
@@ -93,12 +89,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   if (currentPage > 0)
                     TextButton(
                       onPressed: _previousPage,
-                      child: const Text(
+                      child: Text(
                         'Back',
-                        style: TextStyle(
+                        style: textTheme.headlineSmall!.copyWith(
                           color: AppTheme.primary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     )
@@ -133,10 +127,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       currentPage == onboardingPages.length - 1
                           ? 'Get Started'
                           : 'Next',
-                      style: const TextStyle(
+                      style: textTheme.headlineSmall!.copyWith(
                         color: AppTheme.primary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),

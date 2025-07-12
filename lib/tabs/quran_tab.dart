@@ -9,6 +9,7 @@ class QuranTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Container(
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -48,10 +49,8 @@ class QuranTab extends StatelessWidget {
                   ),
                 ),
                 hintText: 'Sura Name',
-                hintStyle: TextStyle(
+                hintStyle: textTheme.headlineSmall!.copyWith(
                   color: AppTheme.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
                 ),
 
                 border: OutlineInputBorder(
@@ -67,32 +66,31 @@ class QuranTab extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 5, top: 25, bottom: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
 
-                child: Text(
-                  'Most Recently',
-                  style: TextStyle(
-                    color: AppTheme.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 5, top: 25, bottom: 10),
+            //   child: Align(
+            //     alignment: Alignment.centerLeft,
 
-            SizedBox(
-              height: 150,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return ListViewSuraItem();
-                },
-              ),
-            ),
+            //     child: Text(
+            //       'Most Recently',
+            //       style: textTheme.headlineSmall!.copyWith(
+            //         color: AppTheme.white,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+            // SizedBox(
+            //   height: 150,
+            //   child: ListView.builder(
+            //     scrollDirection: Axis.horizontal,
+            //     itemCount: 4,
+            //     itemBuilder: (context, index) {
+            //       return ListViewSuraItem();
+            //     },
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.only(left: 5, top: 25, bottom: 10),
               child: Align(
@@ -100,10 +98,8 @@ class QuranTab extends StatelessWidget {
 
                 child: Text(
                   'Suras List',
-                  style: TextStyle(
+                  style: textTheme.headlineSmall!.copyWith(
                     color: AppTheme.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

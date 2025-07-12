@@ -1,9 +1,9 @@
 class AppImage {
   static const String islamiLogo = 'assets/onboarding/onboardingtop.png';
-  static const String onboardingImage1 = 'assets/onboardingh/1.png';
-  static const String onboardingImage2 = 'assets/onboardingh/2.png';
-  static const String onboardingImage3 = 'assets/onboardingh/3.png';
-  static const String onboardingImage4 = 'assets/onboardingh/4.png';
+  static const String onboardingImage1 = 'assets/onboarding/1.png';
+  static const String onboardingImage2 = 'assets/onboarding/2.png';
+  static const String onboardingImage3 = 'assets/onboarding/3.png';
+  static const String onboardingImage4 = 'assets/onboarding/4.png';
   static const String onboardingImage5 = 'assets/onboarding/5.png';
 
   static const String navbarQuran = 'assets/icons/quran.svg';

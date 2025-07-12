@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami/app_image.dart';
 import 'package:islami/app_theme.dart';
-import 'package:islami/componants/listview_sura_item.dart';
 
 class QuranTab extends StatelessWidget {
   const QuranTab({super.key});
@@ -23,7 +22,7 @@ class QuranTab extends StatelessWidget {
       child: SafeArea(
         left: false,
         right: false,
-        child: ListView(
+        child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 46),
@@ -91,17 +90,82 @@ class QuranTab extends StatelessWidget {
             //     },
             //   ),
             // ),
-            Padding(
-              padding: const EdgeInsets.only(left: 5, top: 25, bottom: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
+            Expanded(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 5,
+                      top: 25,
+                      bottom: 10,
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
 
-                child: Text(
-                  'Suras List',
-                  style: textTheme.headlineSmall!.copyWith(
-                    color: AppTheme.white,
+                      child: Text(
+                        'Suras List',
+                        style: textTheme.headlineSmall!.copyWith(
+                          color: AppTheme.white,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  Expanded(
+                    child: ListView.separated(
+                      itemBuilder: (_, index) => Container(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Image.asset(
+                                  AppImage.frame,
+                                  fit: BoxFit.contain,
+                                ),
+                                Text(
+                                  '1',
+                                  style: textTheme.headlineMedium!.copyWith(
+                                    color: AppTheme.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 30),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  'Al-Fatiha',
+                                  style: textTheme.headlineMedium!.copyWith(
+                                    color: AppTheme.white,
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  '7 Verses',
+                                  style: textTheme.bodySmall!.copyWith(
+                                    color: AppTheme.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            Text(
+                              'الفاتحه',
+                              style: textTheme.headlineMedium!.copyWith(
+                                color: AppTheme.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      separatorBuilder: (_, _) =>
+                          Divider(color: AppTheme.white, thickness: 1),
+                      itemCount: 30,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

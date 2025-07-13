@@ -7,7 +7,7 @@ import 'package:islami/services/quran_service.dart';
 class QuranDisplayScreen extends StatefulWidget {
   final SuraModel sura;
 
-  QuranDisplayScreen({super.key, required this.sura});
+  const QuranDisplayScreen({super.key, required this.sura});
 
   @override
   State<QuranDisplayScreen> createState() => _QuranDisplayScreenState();
@@ -63,7 +63,7 @@ class _QuranDisplayScreenState extends State<QuranDisplayScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      separatorBuilder: (_, _) => SizedBox(height: 10),
+                      separatorBuilder: (_, _) => Text('Done'),
                       itemCount: ayatList.length,
                     ),
                   ),

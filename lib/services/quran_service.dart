@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:islami/models/sura_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuranService {
   static List<String> arabicSuras = [
@@ -351,6 +352,7 @@ class QuranService {
     6,
   ];
 
+  static String sharedPreferencesString = 'most_recently';
   static List<SuraModel> suraModels = List.generate(
     114,
     (index) => createSuraModel(index),
@@ -358,6 +360,20 @@ class QuranService {
 
   static List<SuraModel> searchSuraList = [];
   static List<SuraModel> mostRecentlyList = [];
+
+  static Future<void> getMostRecently() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? mostRecentlyStringIndex = prefs.getStringList(
+      sharedPreferencesString,
+    );
+
+    if (mostRecentlyStringIndex == null) return;
+
+    mostRecentlyList = mostRecentlyStringIndex.map((element) {
+      int index = int.parse(element);
+      return createSuraModel(index);
+    }).toList();
+  }
 
   static SuraModel createSuraModel(int index) => SuraModel(
     arabicName: arabicSuras[index],
@@ -380,18 +396,31 @@ class QuranService {
     }
   }
 
-  static void addToMostRecently(SuraModel sura) {
-    // for (int i = 0; i < mostRecentlyList.length; i++) {
-    //   if (sura.number == mostRecentlyList[i].number) {
-    //     return;
-    //   }
-    // }
+  static void addToMostRecently(SuraModel sura) async {
     bool isExist = mostRecentlyList.any(
       (mostRecentlySura) => mostRecentlySura.number == sura.number,
     );
 
     if (!isExist) {
       mostRecentlyList.insert(0, sura);
+      if (mostRecentlyList.length > 5) {
+        mostRecentlyList = mostRecentlyList.sublist(0, 5);
+      }
+    } else {
+      return;
     }
+
+    List<String> mostRecentlyIndex = mostRecentlyList
+        .map((element) => (element.number - 1).toString())
+        .toList();
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(sharedPreferencesString, mostRecentlyIndex);
+  }
+
+  static Future<void> clearMostRecently() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(sharedPreferencesString);
+    mostRecentlyList.clear();
   }
 }

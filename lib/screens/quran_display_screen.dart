@@ -27,6 +27,7 @@ class _QuranDisplayScreenState extends State<QuranDisplayScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+
         title: Text(
           widget.sura.englishName,
           style: textTheme.headlineMedium!.copyWith(color: AppTheme.primary),
@@ -34,30 +35,37 @@ class _QuranDisplayScreenState extends State<QuranDisplayScreen> {
       ),
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(AppImage.cornerLeft),
-              Text(
-                widget.sura.arabicName,
-                style: textTheme.headlineLarge!.copyWith(
-                  color: AppTheme.primary,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(AppImage.cornerLeft),
+                Text(
+                  widget.sura.arabicName,
+                  style: textTheme.headlineLarge!.copyWith(
+                    color: AppTheme.primary,
+                  ),
                 ),
-              ),
-              Image.asset(AppImage.cornerRight),
-            ],
+                Image.asset(AppImage.cornerRight),
+              ],
+            ),
           ),
           ayatList.isNotEmpty
               ? Expanded(
-                  child: ListView.separated(
-                    itemBuilder: (_, index) => Text(
-                      ayatList[index],
-                      style: textTheme.headlineMedium!.copyWith(
-                        color: AppTheme.primary,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ListView.separated(
+                      itemBuilder: (_, index) => Text(
+                        ayatList[index],
+                        style: textTheme.headlineMedium!.copyWith(
+                          color: AppTheme.primary,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
+                      separatorBuilder: (_, _) => SizedBox(height: 10),
+                      itemCount: ayatList.length,
                     ),
-                    separatorBuilder: (_, _) => SizedBox(height: 10),
-                    itemCount: ayatList.length,
                   ),
                 )
               : Expanded(

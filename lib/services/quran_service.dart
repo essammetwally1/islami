@@ -356,6 +356,8 @@ class QuranService {
     (index) => createSuraModel(index),
   );
 
+  static List<SuraModel> searchSuraList = [];
+
   static SuraModel createSuraModel(int index) => SuraModel(
     arabicName: arabicSuras[index],
     englishName: englishSuras[index],
@@ -365,5 +367,15 @@ class QuranService {
 
   static Future<String> loadSuraFile(int suraNumber) async {
     return await rootBundle.loadString('assets/Suras/$suraNumber.txt');
+  }
+
+  static void searchSura(String value) {
+    searchSuraList.clear();
+    for (int i = 0; i < 114; i++) {
+      if (arabicSuras[i].contains(value) ||
+          englishSuras[i].toLowerCase().contains(value.toLowerCase())) {
+        searchSuraList.add(createSuraModel(i));
+      }
+    }
   }
 }

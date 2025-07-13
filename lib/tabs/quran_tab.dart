@@ -6,9 +6,15 @@ import 'package:islami/models/sura_model.dart';
 import 'package:islami/screens/quran_display_screen.dart';
 import 'package:islami/services/quran_service.dart';
 
-class QuranTab extends StatelessWidget {
-  final List<SuraModel> suraModels = QuranService.suraModels;
+class QuranTab extends StatefulWidget {
   QuranTab({super.key});
+
+  @override
+  State<QuranTab> createState() => _QuranTabState();
+}
+
+class _QuranTabState extends State<QuranTab> {
+  List<SuraModel> suraModels = QuranService.suraModels;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +40,11 @@ class QuranTab extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextField(
+              onChanged: (value) {
+                QuranService.searchSura(value);
+                suraModels = QuranService.searchSuraList;
+                setState(() {});
+              },
               cursorColor: AppTheme.white,
               style: TextStyle(color: AppTheme.white),
 

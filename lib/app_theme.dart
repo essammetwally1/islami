@@ -10,6 +10,7 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     appBarTheme: AppBarTheme(
       backgroundColor: black,
+      foregroundColor: primary,
       iconTheme: IconThemeData(color: primary, size: 30),
     ),
     primaryColor: primary,

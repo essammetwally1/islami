@@ -15,4 +15,8 @@ class AppImage {
   static const String backgroundImage = 'assets/Background.png';
   static const String frame = 'assets/frame.png';
   static const String sura = 'assets/sura.png';
+
+  static const String cornerLeft = 'assets/quranFrameLeft.png';
+  static const String cornerRight = 'assets/quranFrameRight.png';
+  static const String mosque = 'assets/Mosque.png';
 }

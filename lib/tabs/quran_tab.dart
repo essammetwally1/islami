@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami/app_image.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/models/sura_model.dart';
+import 'package:islami/screens/quran_display_screen.dart';
 import 'package:islami/services/quran_service.dart';
 
 class QuranTab extends StatelessWidget {
@@ -116,7 +117,14 @@ class QuranTab extends StatelessWidget {
                   Expanded(
                     child: ListView.separated(
                       itemBuilder: (_, index) => InkWell(
-                        // onTap: ,
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  QuranDisplayScreen(sura: suraModels[index]),
+                            ),
+                          );
+                        },
                         child: Row(
                           children: [
                             Container(

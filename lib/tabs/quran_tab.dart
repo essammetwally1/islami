@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami/app_image.dart';
 import 'package:islami/app_theme.dart';
+import 'package:islami/componants/most_recently_section.dart';
 import 'package:islami/models/sura_model.dart';
 import 'package:islami/screens/quran_display_screen.dart';
 import 'package:islami/services/quran_service.dart';
 
 class QuranTab extends StatefulWidget {
-  QuranTab({super.key});
-
   @override
   State<QuranTab> createState() => _QuranTabState();
 }
@@ -20,25 +19,21 @@ class _QuranTabState extends State<QuranTab> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
-
           image: AssetImage(AppImage.backgroundImage),
         ),
       ),
-
       child: SafeArea(
-        left: false,
-        right: false,
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 46),
+              padding: const EdgeInsets.symmetric(horizontal: 26),
               child: Image.asset(AppImage.islamiLogo, fit: BoxFit.fill),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               onChanged: (value) {
                 QuranService.searchSura(value);
@@ -47,11 +42,9 @@ class _QuranTabState extends State<QuranTab> {
               },
               cursorColor: AppTheme.white,
               style: TextStyle(color: AppTheme.white),
-
               decoration: InputDecoration(
                 filled: true,
                 fillColor: AppTheme.black.withValues(alpha: .7),
-
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SvgPicture.asset(
@@ -66,7 +59,6 @@ class _QuranTabState extends State<QuranTab> {
                 hintStyle: textTheme.headlineSmall!.copyWith(
                   color: AppTheme.white,
                 ),
-
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -80,122 +72,92 @@ class _QuranTabState extends State<QuranTab> {
                 ),
               ),
             ),
-
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 5, top: 25, bottom: 10),
-            //   child: Align(
-            //     alignment: Alignment.centerLeft,
-
-            //     child: Text(
-            //       'Most Recently',
-            //       style: textTheme.headlineSmall!.copyWith(
-            //         color: AppTheme.white,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
-            // SizedBox(
-            //   height: 150,
-            //   child: ListView.builder(
-            //     scrollDirection: Axis.horizontal,
-            //     itemCount: 4,
-            //     itemBuilder: (context, index) {
-            //       return ListViewSuraItem();
-            //     },
-            //   ),
-            // ),
-            Expanded(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 5,
-                      top: 25,
-                      bottom: 10,
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-
-                      child: Text(
-                        'Suras List',
-                        style: textTheme.headlineSmall!.copyWith(
-                          color: AppTheme.white,
-                        ),
-                      ),
-                    ),
+            MostRecentlySection(),
+            Padding(
+              padding: const EdgeInsets.only(left: 5, top: 10, bottom: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Suras List',
+                  style: textTheme.headlineSmall!.copyWith(
+                    color: AppTheme.white,
                   ),
-                  Expanded(
-                    child: ListView.separated(
-                      itemBuilder: (_, index) => InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  QuranDisplayScreen(sura: suraModels[index]),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 70,
-                              width: 70,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  scale: .78,
-                                  image: AssetImage(AppImage.frame),
-
-                                  // fit: BoxFit.contain,
-                                ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: MediaQuery.removePadding(
+                context: context,
+                removeTop: true,
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: suraModels.length,
+                  separatorBuilder: (_, _) =>
+                      Divider(color: AppTheme.white, thickness: 1, height: 1),
+                  itemBuilder: (_, index) => InkWell(
+                    onTap: () async {
+                      QuranService.addToMostRecently(suraModels[index]);
+                      await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              QuranDisplayScreen(sura: suraModels[index]),
+                        ),
+                      );
+                      setState(() {});
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 70,
+                            width: 70,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                scale: .78,
+                                image: AssetImage(AppImage.frame),
+                                fit: BoxFit.contain,
                               ),
-
-                              child: Text(
-                                suraModels[index].number.toString(),
-
-                                style: textTheme.headlineMedium!.copyWith(
-                                  color: AppTheme.white,
-                                ),
-                              ),
                             ),
-
-                            SizedBox(width: 30),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  suraModels[index].englishName,
-                                  style: textTheme.headlineMedium!.copyWith(
-                                    color: AppTheme.white,
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  '${suraModels[index].ayaNumber} Verses',
-                                  style: textTheme.bodySmall!.copyWith(
-                                    color: AppTheme.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Spacer(),
-                            Text(
-                              suraModels[index].arabicName,
+                            child: Text(
+                              suraModels[index].number.toString(),
                               style: textTheme.headlineMedium!.copyWith(
                                 color: AppTheme.white,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                          const SizedBox(width: 16),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                suraModels[index].englishName,
+                                style: textTheme.headlineMedium!.copyWith(
+                                  color: AppTheme.white,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                '${suraModels[index].ayaNumber} Verses',
+                                style: textTheme.bodySmall!.copyWith(
+                                  color: AppTheme.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Text(
+                            suraModels[index].arabicName,
+                            style: textTheme.headlineMedium!.copyWith(
+                              color: AppTheme.white,
+                            ),
+                          ),
+                        ],
                       ),
-
-                      separatorBuilder: (_, _) =>
-                          Divider(color: AppTheme.white, thickness: 1),
-                      itemCount: suraModels.length,
                     ),
                   ),
-                ],
+                ),
               ),
             ),
           ],

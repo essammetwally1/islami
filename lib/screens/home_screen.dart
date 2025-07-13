@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: tabs[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // backgroundColor: AppTheme.primary,
         currentIndex: currentIndex,
         onTap: (index) {
           if (currentIndex != index) {
@@ -37,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() {});
           }
         },
-        selectedFontSize: 12,
+        selectedFontSize: 15,
 
         items: [
           BottomNavigationBarItem(

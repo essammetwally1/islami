@@ -357,6 +357,7 @@ class QuranService {
   );
 
   static List<SuraModel> searchSuraList = [];
+  static List<SuraModel> mostRecentlyList = [];
 
   static SuraModel createSuraModel(int index) => SuraModel(
     arabicName: arabicSuras[index],
@@ -376,6 +377,21 @@ class QuranService {
           englishSuras[i].toLowerCase().contains(value.toLowerCase())) {
         searchSuraList.add(createSuraModel(i));
       }
+    }
+  }
+
+  static void addToMostRecently(SuraModel sura) {
+    // for (int i = 0; i < mostRecentlyList.length; i++) {
+    //   if (sura.number == mostRecentlyList[i].number) {
+    //     return;
+    //   }
+    // }
+    bool isExist = mostRecentlyList.any(
+      (mostRecentlySura) => mostRecentlySura.number == sura.number,
+    );
+
+    if (!isExist) {
+      mostRecentlyList.insert(0, sura);
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/componants/listview_sura_item.dart';
 import 'package:islami/models/sura_model.dart';
+import 'package:islami/screens/quran_display_screen.dart';
 import 'package:islami/services/quran_service.dart';
 
 class MostRecentlySection extends StatelessWidget {
@@ -33,7 +34,19 @@ class MostRecentlySection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: suraModels.length,
               itemBuilder: (context, index) {
-                return ListViewSuraItem(suraModel: suraModels[index]);
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return QuranDisplayScreen(sura: suraModels[index]);
+                        },
+                      ),
+                    );
+                  },
+
+                  child: ListViewSuraItem(suraModel: suraModels[index]),
+                );
               },
             ),
           ),

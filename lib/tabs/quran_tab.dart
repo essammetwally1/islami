@@ -8,6 +8,8 @@ import 'package:islami/screens/quran_display_screen.dart';
 import 'package:islami/services/quran_service.dart';
 
 class QuranTab extends StatefulWidget {
+  const QuranTab({super.key});
+
   @override
   State<QuranTab> createState() => _QuranTabState();
 }
@@ -29,9 +31,11 @@ class _QuranTabState extends State<QuranTab> {
       child: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 26),
-              child: Image.asset(AppImage.islamiLogo, fit: BoxFit.fill),
+            Image.asset(
+              AppImage.islamiLogo,
+              fit: BoxFit.fill,
+              width: double.infinity,
+              height: MediaQuery.sizeOf(context).height * .15,
             ),
             const SizedBox(height: 20),
             TextField(
@@ -74,7 +78,7 @@ class _QuranTabState extends State<QuranTab> {
             ),
             MostRecentlySection(),
             Padding(
-              padding: const EdgeInsets.only(left: 5, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(left: 5, top: 10),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
